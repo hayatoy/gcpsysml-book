@@ -1,0 +1,15 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: flask
+  version: "0.12"
+
+handlers:
+- url: /dfstart
+  script: df.app
+  secure: admin
+  
+- url: /.*
+  script: main.app

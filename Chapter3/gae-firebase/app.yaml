@@ -1,0 +1,20 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: flask
+  version: "0.12"
+- name: ssl
+  version: "2.7.11"
+
+env_variables:
+  GAE_USE_SOCKETS_HTTPLIB : 'true'
+
+handlers:
+- url: /admin/.*
+  script: google.appengine.ext.admin.application
+  login: admin
+  
+- url: /.*
+  script: main.app

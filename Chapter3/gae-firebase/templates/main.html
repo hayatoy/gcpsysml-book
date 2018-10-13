@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <h1>Firebase Realtime Database</h1>
+    <div id="realtime-result"></div>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script>
+    var config = {
+      databaseURL: "https://{{ app_id }}.firebaseio.com"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+    
+    var cityAddressRef = database.ref('city-address/latest');
+    cityAddressRef.on('value', function(snapshot) {
+      var row = snapshot.val();
+      var result = document.getElementById('realtime-result');
+      var t = new Date(row.time);
+      result.innerText = row.city + ', ' + row.address + ', ' + t;
+    });
+
+    </script>
+  </body>
+</html>
